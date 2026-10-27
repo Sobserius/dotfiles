@@ -82,6 +82,11 @@ Keyboard layouts are `us,ru`, switched with **Alt+Shift** (no LED options set).
   work area instead of snapping to terminal cell sizes.
 - **Systray** — the dwm systray patch is applied; it exists for the udiskie icon
   (and anything else that docks). Set `showsystray = 0` in `config.h` to drop it.
+- **Flatpak apps in the launcher** — `.xinitrc` sources
+  `/etc/profile.d/flatpak.sh` so `j4-dmenu-desktop` (which scans
+  `$XDG_DATA_DIRS`) also picks up flatpak exports
+  (`/var/lib/flatpak/exports/share/applications`). Without it, flatpaks like
+  Vesktop / Telegram / Sober don't show in `Super + d`.
 - **Passwordless mounts** — `61-udisks2.rules` returns `polkit.Result.YES` for
   `org.freedesktop.udisks2.*` to members of `wheel`. Change the group name if
   your distro uses a different admin group.
