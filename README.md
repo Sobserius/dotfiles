@@ -13,6 +13,7 @@ A minimal Arch Linux X11 desktop built from suckless sources: **dwm 6.8**,
 | `.config/dwm/` | `~/.config/dwm/` | autostart + status-bar clock |
 | `.config/superfile/` | `~/.config/superfile/` | superfile config + `hellokitties` theme |
 | `.config/udiskie/` | `~/.config/udiskie/` | lets the internal `Files` volume through |
+| `.local/share/applications/` | `~/.local/share/applications/` | launcher entry for pulsemixer |
 | `suckless/dwm/` | build & install | dwm with **systray** patch + autostart hook |
 | `suckless/st/` | build & install | terminal, same palette |
 | `suckless/dmenu/` | build & install | launcher UI, same palette |
@@ -53,7 +54,7 @@ Installed automatically by `install.sh`. For manual/reference use:
 ```sh
 sudo pacman -S --needed base-devel libx11 libxft libxinerama freetype2 \
   fontconfig noto-fonts j4-dmenu-desktop udiskie polkit feh scrot superfile \
-  pipewire pipewire-pulse wireplumber pavucontrol alsa-utils rtkit \
+  pipewire pipewire-pulse wireplumber pulsemixer alsa-utils rtkit \
   xorg-server xorg-xinit xorg-xsetroot xorg-xrdb xorg-xrandr
 ```
 
@@ -112,6 +113,9 @@ Keyboard layouts are `us,ru`, switched with **Alt+Shift** (no LED options set).
   ```
   If your session has no logind ACL on `/dev/snd` (e.g. X started from a
   detached process), also `sudo gpasswd -a "$USER" audio`.
+- **Audio mixer** — `pulsemixer` (curses, keyboard/mouse). Open it from
+  `Super + d` → *PulseMixer*, or just run `pulsemixer` inside st.
+  Keys: `↑/↓` select, `←/→` volume, `m` mute, `F1` help, `q` quit.
 - **Wallpaper is optional** — autostart silently skips it if
   `~/hellokitties.png` is missing.
 - The vendored suckless programs keep their upstream MIT licenses.

@@ -14,7 +14,7 @@ fi
 
 deps="base-devel libx11 libxft libxinerama freetype2 fontconfig noto-fonts
 j4-dmenu-desktop udiskie polkit feh scrot superfile
-pipewire pipewire-pulse wireplumber pavucontrol alsa-utils rtkit
+pipewire pipewire-pulse wireplumber pulsemixer alsa-utils rtkit
 xorg-server xorg-xinit xorg-xsetroot xorg-xrdb xorg-xrandr"
 
 if command -v pacman >/dev/null 2>&1; then
@@ -32,6 +32,9 @@ mkdir -p "$HOME/.config"
 cp -a "$repo/.config/." "$HOME/.config/"
 cp -a "$repo/.xinitrc" "$HOME/.xinitrc"
 cp -a "$repo/.Xresources" "$HOME/.Xresources"
+if [ -d "$repo/.local" ]; then
+	cp -a "$repo/.local/." "$HOME/.local/"
+fi
 
 if [ -f "$repo/wallpapers/hellokitties.png" ]; then
 	cp -a "$repo/wallpapers/hellokitties.png" "$HOME/hellokitties.png"
