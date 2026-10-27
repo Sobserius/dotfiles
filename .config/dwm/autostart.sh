@@ -12,7 +12,7 @@ DWMPID=$PPID "$HOME/.config/dwm/status.sh" &
 
 # removable drives: automount new devices (tray icon needs a systray)
 if ! pgrep -x udiskie >/dev/null 2>&1; then
-	udiskie -a -t &
+	udiskie -a &
 fi
 
 # wallpaper (optional: silently skip if the image isn't there)
