@@ -12,11 +12,10 @@ if [ "$(id -u)" -eq 0 ]; then
 	exit 1
 fi
 
-deps="base-devel libx11 libxft libxinerama freetype2 fontconfig noto-fonts
+deps="base-devel libx11 libxft libxinerama freetype2 fontconfig noto-fonts ttf-nerd-fonts-symbols
 j4-dmenu-desktop udiskie polkit feh scrot superfile
 pipewire pipewire-pulse wireplumber pulsemixer alsa-utils rtkit
-xorg-server xorg-xinit xorg-xsetroot xorg-xrdb xorg-xrandr
-curl python"
+xorg-server xorg-xinit xorg-xsetroot xorg-xrdb xorg-xrandr"
 
 if command -v pacman >/dev/null 2>&1; then
 	say "installing dependencies (sudo will ask for your password)"
@@ -26,29 +25,6 @@ if command -v pacman >/dev/null 2>&1; then
 else
 	say "pacman not found — install these packages with your package manager:"
 	echo $deps
-fi
-
-# Symbols Nerd Font — installed from the upstream nerd-fonts release
-# (no AUR, no yay): fonts go to ~/.local/share/fonts, plus the fontconfig
-# fallback so nerd glyphs render in st/dwm automatically.
-if ! fc-list 2>/dev/null | grep -qi 'Symbols Nerd Font'; then
-	say "installing Symbols Nerd Font from the nerd-fonts release"
-	tmp=$(mktemp -d)
-	if curl -fsSL -o "$tmp/symbols.zip" \
-		https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip
-	then
-		python3 -m zipfile -e "$tmp/symbols.zip" "$tmp/out"
-		mkdir -p "$HOME/.local/share/fonts" "$HOME/.config/fontconfig/conf.d"
-		cp "$tmp/out/SymbolsNerdFont-Regular.ttf" \
-			"$tmp/out/SymbolsNerdFontMono-Regular.ttf" \
-			"$HOME/.local/share/fonts/"
-		cp "$tmp/out/10-nerd-font-symbols.conf" \
-			"$HOME/.config/fontconfig/conf.d/"
-		fc-cache -f "$HOME/.local/share/fonts" >/dev/null 2>&1 || true
-	else
-		say "could not download it (offline?) — skipping; nerd glyphs may not render"
-	fi
-	rm -rf "$tmp"
 fi
 
 say "copying configs into $HOME"
