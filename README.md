@@ -74,6 +74,10 @@ Keyboard layouts are `us,ru`, switched with **Alt+Shift** (no LED options set).
 ## Notes
 
 - **No terminal at startup** — the desktop comes up clean; `Super + Return` opens st.
+- **Battery** — the status bar shows `BAT 87%` to the left of the clock when the
+  machine has a system battery (`/sys/class/power_supply/*`, `type=Battery`,
+  `scope=System`, `present=1`). On a desktop with no battery the segment simply
+  disappears. Peripheral batteries (mice, keyboards) are ignored.
 - **Window gaps** — `resizehints = 0` in dwm so tiled windows actually fill the
   work area instead of snapping to terminal cell sizes.
 - **Systray** — the dwm systray patch is applied; it exists for the udiskie icon
