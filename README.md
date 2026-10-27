@@ -37,16 +37,28 @@ cd dotfiles
 ./install.sh
 ```
 
-`install.sh` copies the configs and wallpaper into `$HOME`, builds/installs the
-three suckless tools (via `sudo make install`), and installs the polkit rule.
+`install.sh` is idempotent and does the whole setup as your normal user:
+
+1. asks for your `sudo` password **once** (cached),
+2. installs all dependencies below with `pacman -S --needed`,
+3. copies the configs and wallpaper into `$HOME`,
+4. builds and installs `dwm`, `st` and `dmenu` (`sudo make install`),
+5. installs the passwordless-udisks2 polkit rule and restarts polkit,
+6. enables the PipeWire user services.
 
 ### Dependencies (Arch)
+
+Installed automatically by `install.sh`. For manual/reference use:
 
 ```sh
 sudo pacman -S --needed base-devel libx11 libxft libxinerama freetype2 \
   fontconfig noto-fonts j4-dmenu-desktop udiskie polkit feh scrot superfile \
-  pipewire pipewire-pulse wireplumber pavucontrol
+  pipewire pipewire-pulse wireplumber pavucontrol alsa-utils rtkit \
+  xorg-server xorg-xinit xorg-xsetroot xorg-xrdb xorg-xrandr
 ```
+
+On a non-Arch distro the script skips the install step and prints the package
+names; install the equivalents, then rerun `./install.sh`.
 
 Start it with `startx` (`.xinitrc` execs dwm). It is designed to live on a
 secondary VT, e.g. `startx -- :0 vt2`.
