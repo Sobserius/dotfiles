@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Superfile
+GenericName=File Manager
+Comment=Terminal file manager
+Exec=spf
+Icon=system-file-manager
+Terminal=true
+Categories=System;FileManager;
+Keywords=files;file manager;file browser;superfile;spf;

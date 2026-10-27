@@ -13,7 +13,7 @@ A minimal Arch Linux X11 desktop built from suckless sources: **dwm 6.8**,
 | `.config/dwm/` | `~/.config/dwm/` | autostart + status-bar clock |
 | `.config/superfile/` | `~/.config/superfile/` | superfile config + `hellokitties` theme |
 | `.config/udiskie/` | `~/.config/udiskie/` | lets the internal `Files` volume through |
-| `.local/share/applications/` | `~/.local/share/applications/` | launcher entry for pulsemixer |
+| `.local/share/applications/` | `~/.local/share/applications/` | launcher entries for superfile + pulsemixer |
 | `suckless/dwm/` | build & install | dwm with **systray** patch + autostart hook |
 | `suckless/st/` | build & install | terminal, same palette |
 | `suckless/dmenu/` | build & install | launcher UI, same palette |
@@ -128,3 +128,7 @@ it in `~/.config/superfile/config.toml`:
 ```toml
 theme = "hellokitties"
 ```
+
+Launch it from `Super + d` → *Superfile* (a `Terminal=true` desktop entry is
+installed to `~/.local/share/applications/superfile.desktop`), or just run
+`spf` in st.
