@@ -1,0 +1,9 @@
+# udiskie configuration
+# see: man udiskie / doc/udiskie.8.txt
+
+device_config:
+  # This machine's internal (built-in) data drive holds an ext4 partition
+  # labelled "Files". udiskie ignores internal drives by default, which is
+  # why it never showed up. Allow this one through.
+  - id_label: Files
+    ignore: false

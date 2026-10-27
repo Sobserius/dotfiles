@@ -1,0 +1,13 @@
+# build artifacts
+*.o
+*.tar.gz
+
+# suckless binaries (the sources are what we ship)
+/suckless/dwm/dwm
+/suckless/st/st
+/suckless/dmenu/dmenu
+/suckless/dmenu/stest
+
+# editor / OS noise
+*.swp
+.DS_Store

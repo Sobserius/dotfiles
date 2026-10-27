@@ -1,0 +1,9 @@
+// Passwordless udisks2 for members of the "wheel" admin group.
+// Change the group name if your distro uses a different admin group.
+polkit.addRule(function(action, subject) {
+    if (subject.isInGroup("wheel") &&
+        (action.id == "org.freedesktop.udisks2" ||
+         action.id.indexOf("org.freedesktop.udisks2.") === 0)) {
+        return polkit.Result.YES;
+    }
+});
