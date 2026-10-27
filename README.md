@@ -42,10 +42,11 @@ cd dotfiles
 
 1. asks for your `sudo` password **once** (cached),
 2. installs all dependencies below with `pacman -S --needed`,
-3. copies the configs and wallpaper into `$HOME`,
-4. builds and installs `dwm`, `st` and `dmenu` (`sudo make install`),
-5. installs the passwordless-udisks2 polkit rule and restarts polkit,
-6. enables the PipeWire user services.
+3. installs the Nerd Font symbols (downloads the official nerd-fonts release),
+4. copies the configs and wallpaper into `$HOME`,
+5. builds and installs `dwm`, `st` and `dmenu` (`sudo make install`),
+6. installs the passwordless-udisks2 polkit rule and restarts polkit,
+7. enables the PipeWire user services.
 
 ### Dependencies (Arch)
 
@@ -55,11 +56,26 @@ Installed automatically by `install.sh`. For manual/reference use:
 sudo pacman -S --needed base-devel libx11 libxft libxinerama freetype2 \
   fontconfig noto-fonts j4-dmenu-desktop udiskie polkit feh scrot superfile \
   pipewire pipewire-pulse wireplumber pulsemixer alsa-utils rtkit \
-  xorg-server xorg-xinit xorg-xsetroot xorg-xrdb xorg-xrandr
+  xorg-server xorg-xinit xorg-xsetroot xorg-xrdb xorg-xrandr curl python
 ```
 
 On a non-Arch distro the script skips the install step and prints the package
 names; install the equivalents, then rerun `./install.sh`.
+
+### Nerd Font symbols (no AUR, no yay)
+
+`install.sh` pulls the official `NerdFontsSymbolsOnly.zip` straight from the
+[nerd-fonts releases](https://github.com/ryanoasis/nerd-fonts/releases) and
+installs it by hand for your user:
+
+- `SymbolsNerdFont-Regular.ttf` + `SymbolsNerdFontMono-Regular.ttf` →
+  `~/.local/share/fonts/`
+- `10-nerd-font-symbols.conf` → `~/.config/fontconfig/conf.d/` (makes
+  `Symbols Nerd Font` the fallback for `monospace`, so nerd glyphs render in
+  st/dwm without changing the font)
+- then `fc-cache -f`
+
+Skipped automatically if `fc-list` already reports `Symbols Nerd Font`.
 
 Start it with `startx` (`.xinitrc` execs dwm). It is designed to live on a
 secondary VT, e.g. `startx -- :0 vt2`.
