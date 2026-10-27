@@ -80,8 +80,11 @@ Keyboard layouts are `us,ru`, switched with **Alt+Shift** (no LED options set).
   disappears. Peripheral batteries (mice, keyboards) are ignored.
 - **Window gaps** — `resizehints = 0` in dwm so tiled windows actually fill the
   work area instead of snapping to terminal cell sizes.
-- **Systray** — the dwm systray patch is applied; it exists for the udiskie icon
-  (and anything else that docks). Set `showsystray = 0` in `config.h` to drop it.
+- **No systray** — `showsystray = 0` in `config.h`, so docked icons (udiskie,
+  VPNs, …) stay invisible. udiskie still runs with `-a` and automounts drives;
+  without a tray icon, mount/unmount manually with
+  `udisksctl mount -b /dev/sdXN` / `udisksctl unmount -b /dev/sdXN`.
+  Set `showsystray = 1` and rebuild to bring the tray back.
 - **Flatpak apps in the launcher** — `.xinitrc` sources
   `/etc/profile.d/flatpak.sh` so `j4-dmenu-desktop` (which scans
   `$XDG_DATA_DIRS`) also picks up flatpak exports
